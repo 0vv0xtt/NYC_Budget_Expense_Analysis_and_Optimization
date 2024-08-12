@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plot Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .table-of-contents {
+            width: 20%;
+            float: left;
+            padding-right: 20px;
+        }
+        .content {
+            width: 70%;
+            float: left;
+        }
+        .section {
+            margin-top: 50px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .chart-container {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Plot Analysis (Powered by MongoDB and Plotly)</h1>
+    <a href="/">Return to Main Menu</a>
+    <a href="/schema">Go to Schema Details</a>
+    <a href="/record-retrieving">Go to Record Retrieving</a>
+    <div class="table-of-contents">
+        <ul>
+            <h2 class="section-title">Other Graphs</h2>
+            <li><a href="/plot-analysis/top-10-agencies">Top 10 Agencies with Highest Adoped Expense Budget</a></li>
+            <li><a href="/plot-analysis/Highest-Expense-to-Planning-Ratio">Top 10 Agencies by Highest Expense-to-Planning Ratio </a></li>
+            <li><a href="/plot-analysis/Lowest-Expense-to-Planning-Ratio">Top 10 Agencies by Lowest Expense-to-Planning Ratio </a></li>
+            <li><a href="/plot-analysis/without-growth">Plot for agencies without growth</a></li>
+        </ul>
+    </div>
+
+ 
+    <div class="content">
+        <div class="section" id="top-10-agencies">
+            <h2 class="section-title">Top 10 Agencies (by fiscal year)</h2>
+        </div>
+        <div id="filter-section">
+            <form action="/plot-analysis" method="post">
+                <label for="fiscal-year">Select Fiscal Year:</label>
+                <select name="fiscal_year" id="fiscal-year">
+                    {% for year in fiscal_years %}
+                        <option value="{{ year }}" {% if year == fiscal_year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Generate Plot">
+            </form>
+        </div>
+        <div id="top-10-agencies-chart">
+            {{ top_10_agencies_graph_html | safe }}
+        </div>
+
+        <div class="content">
+        <div class="section" id="agencies-trend">
+            <h2 class="section-title">Agency Trend Throughout Fiscal Year</h2>
+        </div>
+        <div id="filter-section">
+            <form action="/plot-analysis" method="post">
+                <label for="agency-name">Select Agency Name:</label>
+                <select name="agency_name" id="agency-name">
+                    {% for name in agency_names %}
+                        <option value="{{ name }}" {% if name == agency_name %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Generate Plot">
+            </form>
+        </div>
+        <div id="agency-trend-chart">
+            {{ agency_graph_html | safe }}
+        </div>
+
+
+    </div>
+</body>
+</html>

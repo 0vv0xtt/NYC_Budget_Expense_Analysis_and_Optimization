@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NYC Expense Dataset</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .option-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
+        }
+
+        .option {
+            width: 300px; 
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .option:hover {
+            background-color: #f2f2f2;
+        }
+
+        .rectangle-button {
+            width: 300px; 
+            padding: 10px 30px;
+            margin-top: 30px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .rectangle-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to NYC Expense Dataset Analysis</h1>
+    <div class="option-container">
+        <div class="option" onclick="location.href='/schema';">
+            <h2>Schema Details</h2>
+            <p>Overview of SQL Schema Structure and relationships </p>
+        </div>
+        <div class="option" onclick="location.href='/record-retrieving';">
+            <h2>Record Retrieving</h2>
+            <p>Retrieve Budget Record</p>
+        </div>
+        <div class="option" onclick="location.href='/plot-analysis';">
+            <h2>Plot</h2>
+            <p>Graphical Analysis of Expense Budget </p>
+        </div>
+    </div>
+</body>
+</html>

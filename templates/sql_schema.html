@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Schema Detail</title>
+</head>
+<body>
+    <h1>SQL Schema Design and Relation</h1>
+    <a href="/">Return to Main Menu</a>
+    <a href="/record-retrieving">Go to Retrieve Records</a>
+    <a href="/plot-analysis">Go to Plot Analysis</a>
+
+    <h2>SQL Table Relationships Diagram</h2>
+    <div id="schema image">
+    </div>
+
+        <img src="{{ url_for('static', filename='schema.jpeg') }}">
+    
+    <p>Our SQL schema breaks down NYC Budget Expense data information into various interconnected tables, ensuring easy navigation and in-depth exploration.</p>
+    <p>Users can retrieve budget expense record details by the IDs in the cases table</p>
+</body>
+</html>

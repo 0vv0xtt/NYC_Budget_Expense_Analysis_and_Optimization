@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Retrieving</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .filter-section {
+            margin-top: 20px;
+        }
+        .filter-dropdown {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .message {
+            color: #FF0000;
+        }
+        .selected-filters {
+            margin-bottom: 10px;
+        }
+        .return-button {
+            float: right;
+            margin-top: -30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Record Retrieving (powered by PostgreSQL)</h1>
+    <a href="/">Return to Main Menu</a>
+    <a href="/schema">Go to Schema Details</a>
+    <a href="/plot-analysis">Go to Plot Analysis</a>
+    <div class="selected-filters">
+        {% if filters %}
+            <p>Selected Filters:</p>
+            <ul>
+                {% for filter_name, filter_value in filters.items() if filter_value %}
+                    <li>{{ filter_name }}: {{ filter_value }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div class="filter-section">
+        <h3>Filter Records:</h3>
+        <form action="/record-retrieving" method="post" id="filter-form">
+            <div class="filter-dropdown">
+                <label for="fiscal_year">Fiscal Year:</label>
+                <select id="fiscal_year" name="fiscal_year">
+                    <option value="">All</option>
+                    {% for fiscal_year in fiscal_years %}
+                    <option value="{{ fiscal_year[0] }}">{{ fiscal_year[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-dropdown">
+                <label for="agency">Agency Name:</label>
+                <select id="agency" name="agency">
+                    <option value="">All</option>
+                    {% for agency in agencies %}
+                    <option value="{{ agency[0] }}">{{ agency[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-dropdown">
+                <label for="unit_appropriation_name">Unit Appropriation Name:</label>
+                <select id="unit_appropriation_name" name="unit_appropriation_name">
+                    <option value="">All</option>
+                    {% for unit_appropriation_name in unit_appropriation_names %}
+                    <option value="{{ unit_appropriation_name[0] }}">{{ unit_appropriation_name[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-dropdown">
+                <label for="budget_code_name">Budget Code Name:</label>
+                <select id="budget_code_name" name="budget_code_name">
+                    <option value="">All</option>
+                    {% for budget_code_name in budget_code_names %}
+                    <option value="{{ budget_code_name[0] }}">{{ budget_code_name[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-dropdown">
+                <label for="object_class_name">Object Class Name:</label>
+                <select id="object_class_name" name="object_class_name">
+                    <option value="">All</option>
+                    {% for object_class_name in object_class_names %}
+                    <option value="{{ object_class_name[0] }}">{{ object_class_name[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-dropdown">
+                <label for="object_code_name">Object Code Name:</label>
+                <select id="object_code_name" name="object_code_name">
+                    <option value="">All</option>
+                    {% for object_code_name in object_code_names %}
+                    <option value="{{ object_code_name[0] }}">{{ object_code_name[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-dropdown">
+                <label for="responsibility_center_name">Responsibility Center Name:</label>
+                <select id="responsibility_center_name" name="responsibility_center_name">
+                    <option value="">All</option>
+                    {% for responsibility_center_name in responsibility_center_names %}
+                    <option value="{{ responsibility_center_name[0] }}">{{ responsibility_center_name[0] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <input type="submit" value="Retrieve Expense Records">
+            <input type="button" value="Reset Filters" onclick="clearFilters()">
+        </form>
+    </div>
+
+    <div id="records-table" style="display: none;"></div>
+        {% if records %}
+        <h2>Expense Records</h2>
+        <table>
+            <tr>
+                <th>Fiscal Year</th>
+                <th>Agency Name</th>
+                <th>Unit Appropriation Name</th>
+                <th>Budget Code Name</th>
+                <th>Object Class Name</th>
+                <th>Object Code Name</th>
+                <th>Responsibility Center Name</th>
+                <th>Adopted Budget Amount</th>
+                <th>Current Modified Budget Amount</th>
+                <th>Financial Plan Amount</th>
+            </tr>
+            {% for record in records[:500] %} {# Limiting to 500 records #}
+            <tr>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[3] }}</td>
+                <td>{{ record[5] }}</td>
+                <td>{{ record[7] }}</td>
+                <td>{{ record[9] }}</td>
+                <td>{{ record[11] }}</td>
+                <td>{{ record[14] }}</td>
+                <td>{{ record[17] }}</td>
+                <td>{{ record[18] }}</td>
+                <td>{{ record[19] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p class="message">* Retrieving limited to 500 records</p>
+        {% endif %}
+
+        <script>
+            function clearFilters() {
+                document.getElementById("filter-form").reset();
+                document.getElementById("records-table").style.display = "none";
+                document.getElementById("message").style.display = "none";
+            }
+        </script>
+
+    </body>
+    </html>
