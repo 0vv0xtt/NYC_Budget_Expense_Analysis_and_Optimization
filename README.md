@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a comprehensive web application designed to analyze and visualize budget expenses for New York City government agencies. By integrating PostgreSQL, MongoDB, and Plotly within a Flask framework, this app provides users with interactive tools to explore over 1 million records of budget data. The goal is to assist city planners, policymakers, and civic tech organizations in identifying trends, optimizing resource allocation, and uncovering potential cost-saving opportunities. The original database can be found: https://data.cityofnewyork.us/City-Government/Expense-Budget/mwzb-yiwb/about_data
+This project is a comprehensive web application designed to analyze and visualize budget expenses for New York City government agencies. By integrating PostgreSQL, MongoDB, and Plotly within a Flask framework, this app provides users with interactive tools to explore over 1 million records of budget data. The goal is to assist city planners, policymakers, and civic tech organizations in identifying trends, optimizing resource allocation, and uncovering potential cost-saving opportunities. 
 
 ## Features
 
@@ -28,6 +28,7 @@ This project is a comprehensive web application designed to analyze and visualiz
 - PostgreSQL
 - MongoDB
 
-
-### *Disclaimer*:
+### Data Source
+The budget data is sourced from the NYC Open Data platform. The original database can be found: https://data.cityofnewyork.us/City-Government/Expense-Budget/mwzb-yiwb/about_data
+## *Disclaimer*:
 This is a student project. Some of the code in the visualization are courtesy of my teammate Leyi Shi. The MangoDB and Postgre have been set up by Jianfei Shi in the preliminary set up stage. ETL pipeline and data cleaning was primarily done by Yumeng Tian. This Project was conducted in August 2023, and the data were up to Aug 2023.
