@@ -28,3 +28,6 @@ This project is a comprehensive web application designed to analyze and visualiz
 - PostgreSQL
 - MongoDB
 
+
+### *Disclaimer*:
+This is a student project. Some of the code in the visualization are courtesy of my teammate Leyi Shi. The MangoDB and Postgre have been set up by Jianfei Shi in the preliminary set up stage. ETL pipeline and data cleaning was primarily done by Yumeng Tian. This Project was conducted in August 2023, and the data were up to Aug 2023.
